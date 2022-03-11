@@ -1,8 +1,9 @@
 Option Explicit
 
-'Data matching - highSpeed_matching()
-
-Sub highSpeed_matching()
+' /**
+'  * Data matching - highSpeed_matching()
+' */
+Private Sub highSpeed_matching()
   Dim i As Long
   Dim values As Variant
   Dim dic As Object
@@ -32,3 +33,27 @@ Sub highSpeed_matching()
     End With
   End With
 End Sub
+
+
+' /**
+'  * Searches within the 2nd dimension array and returns the index number.
+'  *  - Mainly used to find a header name in dynamic arrays.
+'  * @param {Variant} var   dynamic arrays
+'  * @param {String}  stxt  target header name
+' */
+Private Function lookup_HeaderIndex(ByRef var As Variant, ByRef stxt As String)
+
+  Dim i As Long
+  Dim lngCol As Long
+
+  lngCol = -1
+  For i = 1 To UBound(var, 2)
+      If var(1, i) = stxt Then
+          lngCol = i
+          Exit For
+      End If
+  Next
+
+  gGetVarColNum = lngCol
+
+End Function
